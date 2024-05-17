@@ -1,0 +1,5 @@
+name: EasyDonateManager
+main: net.melix.easydonate.EasyDonateManager
+version: 1.2
+api: [1.0.14]
+author: MELLX9535
