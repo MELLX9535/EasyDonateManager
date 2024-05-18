@@ -37,15 +37,17 @@ public class EasyDonateUpdateAsync extends AsyncTask {
             ArrayList<Map<String, Object>> dataList = (ArrayList<Map<String, Object>>) responseMap.get("response");
             Map<String, Object> result = new ConcurrentHashMap<>();
 
+            int index = 0;
             for (Map<String, Object> data : dataList) {
                 ArrayList<Map<String, Object>> serversList = (ArrayList<Map<String, Object>>) data.get("servers");
                 for (Map<String, Object> server : serversList) {
                     int serverId = (int) server.get("id");
                     if (serverId == EasyDonateManager.SERVER_ID) {
                         data.put("servers", server);
-                        result.put(data.get("sort_index") + "", data);
+                        result.put(index + "", data);
                     }
                 }
+                index++;
             }
             EasyDonateManager.getInstance().getEasyDonateProducts().updateConfigData(result);
         } catch (Exception exception) {
